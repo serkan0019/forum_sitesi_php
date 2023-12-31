@@ -1,8 +1,8 @@
 <center>
 
-<h1> Forum Sitesi PHP <> Serkan Armutlu </h1>
+<a href = "index.php"> <h1> Forum Sitesi PHP <> Serkan Armutlu </h1> </a>
 
-<a href = " " > Üye Ol </a> Veya <a href = " " > Giriş Yap </a>
+<a href = " " > Üye Ol </a> veya <a href = " " > Giriş Yap </a>
 
 <br> <br>
 
