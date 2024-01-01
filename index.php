@@ -1,8 +1,12 @@
+<?php
+session_start();
+include 'ayar.php';
+include 'ukas.php';
+include 'fonksiyon.php';
+?>
+
 <center>
-
-<a href = "index.php"> <h1> Forum Sitesi PHP <> Serkan Armutlu </h1> </a>
-
-<a href = " " > Üye Ol </a> veya <a href = " " > Giriş Yap </a>
+<?php include 'ust_bilgi.php'; ?>
 
 <br> <br>
 
