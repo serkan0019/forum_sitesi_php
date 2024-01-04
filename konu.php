@@ -3,65 +3,42 @@ session_start();
 include 'ayar.php';
 include 'ukas.php';
 include 'fonksiyon.php';
+
+$link = $_GET["link"];
+
+$data = $db -> prepare("SELECT * FROM konular WHERE
+  konu_link=?
+
+");
+$data -> execute([
+  $link
+]);
+$data = $db -> prepare("SELECT * FROM konular WHERE
+        konu_link=?
+    ");
+    $data -> execute([
+        $link
+    ]);
+    $_data = $data -> fetch(PDO::FETCH_ASSOC);
 ?>
 <center>
 
-<?php include = 'ust_bilgi.php'; ?>
+<?php include 'ust_bilgi.php'; ?>
 
 <br> <br>
 
-<h2> Konu Başlığı </h2>
 
-<strong> Konu Sahibi: </strong> <a href= "profil.php?yin=kemal"> Kemal Dokumacı </a>
 
-<p>
-    Konu Mesajlar
-</p>
+<h2><?php echo $_data["konu_ad"]; ?></h2>
 
-<hr>
-
-<h3> Yorumlar: </h3>
-
-<a href= "profil.php?yin=serkan"> <strong> Serkan Mutlu </strong> </a> <br>
+<strong> Konu Sahibi: </strong><a href= "profil.php?kadi=<?= uye_ID_to_kadi($_data["konu_uye_id"])?>"><?=uye_ID_to_isim($_data["konu_uye_id"])?></a>
 
 <p>
-    Lorem ipsum dolor sit amet.
+<?php echo $_data["konu_mesaj"]; ?>
 </p>
-
-<small> Tarih: </small>
-
-<hr>
-
-<a href= "profil.php?yin=serkan"> <strong> Serkan Mutlu </strong> </a> <br>
 
 <p>
-    Lorem ipsum dolor sit amet.
+    <small><?=$_data["konu_tarih"]?></small>
 </p>
-
-<small> Tarih: </small>
-
-<hr>
-
-<a href= "profil.php?yin=serkan"> <strong> Serkan Mutlu </strong> </a> <br>
-
-<p>
-    Lorem ipsum dolor sit amet.
-</p>
-
-<small> Tarih: </small>
-
-<h4> Yorum Yap: </h4>
-
-<form action = " " method = "post">
-    
-<textarea name = "yorum" cols = "30" rows = "10"> </textarea>
-
-<br> <br>
-
-<input type = "submit" value = "Yorum Yap">
-
-</form>
-
-Yorum yapabilmek için <a href = "uyelik.php"> Giriş Yap </a> veya <a href = "uyelik.php?q=kayit"> Kayıt Ol </a>
 
 </center>
