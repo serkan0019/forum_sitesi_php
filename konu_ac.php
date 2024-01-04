@@ -1,14 +1,52 @@
+<?php
+session_start();
+include 'ayar.php';
+include 'ukas.php';
+include 'fonksiyon.php';
+
+if(!@$_SESSION["uye_id"])
+{
+    echo '<center><h1>Konu paylaşmanız için üye olmanız gereklidir! <a href = "uyelik.php">Üye Ol</a></center><h1>';
+    exit;
+}
+?>
+
 <center>
 
-<a href = "index.php"> <h1> Forum Sitesi PHP <> Serkan Armutlu </h1> </a>
-
-<a href = " "> Üye Ol </a> veya <a href = " "> Giriş Yap </a>
-
-<br>
-<a href = "profil.php?yin=serkan"> Profilime Git </a>
-<a href = "profil.php?q=cikis"> Çıkış Yap </a>
+<?php include 'ust_bilgi.php'; ?>
 
 <br> <br>
+
+<?php
+if ($_POST) {
+    $ad     = $_POST["ad"];
+    $mesaj  = $_POST["mesaj"];
+    $link = permalink($ad) . "/" . rand(0, 100);
+
+    $dataAdd = $db -> prepare("INSERT INTO konular SET
+                konu_ad=?,
+                konu_link=?,
+                konu_mesaj=?,
+                konu_uye_id=?
+    ");
+    $dataAdd -> execute([
+        $ad,
+        $link,
+        $mesaj,
+        @$_SESSION["uye_id"]
+    ]);
+
+    if ( $dataAdd ) {
+        echo '<p class="alert alert-success">Başarıyla konunuz paylaşıldı. :)</p>';
+        
+        header("REFRESH:1;URL=konu.php?link=" . $link);
+    } else {
+        echo '<p class="alert alert-danger">Hay aksi bir hata ile karşılaştık, lütfen tekrar deneyiniz. :/</p>';
+        
+        header("REFRESH:1;URL=konuac.php");
+    }
+}
+?>
 
 <h2> Konu Paylaşma </h2>
 
@@ -20,14 +58,12 @@
 
 <strong> Konu Mesajı: </strong>
     
-<textarea name = "yorum" cols = "30" rows = "10"> </textarea>
+<textarea name = "mesaj" cols = "30" rows = "10"> </textarea>
 
 <br>
 
 <input type = "submit" value = "Konuyu Aç">
 
 </form>
-
-Konu paylaşabilmek için <a href = "uyelik.php"> Giriş Yap </a> veya <a href = "uyelik.php?q=kayit"> Kayıt Ol </a>
 
 </center>
