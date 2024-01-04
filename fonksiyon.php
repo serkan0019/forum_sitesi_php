@@ -80,3 +80,31 @@ function permalink($str, $options = array()){
     $str = trim($str, $options['delimiter']);
     return $options['lowercase'] ? mb_strtolower($str, 'UTF-8') : $str;
 }
+
+function uye_ID_to_isim($id)
+{
+    global $db;
+$data = $db -> prepare("SELECT * FROM uyeler WHERE
+  uye_id=?
+");
+$data -> execute([
+  $id
+]);
+$_data = $data -> fetch(PDO::FETCH_ASSOC);
+
+return $_data["uye_adsoyad"];
+}
+
+function uye_ID_to_kadi($id)
+{
+    global $db;
+$data = $db -> prepare("SELECT * FROM uyeler WHERE
+  uye_id=?
+");
+$data -> execute([
+  $id
+]);
+$_data = $data -> fetch(PDO::FETCH_ASSOC);
+
+return $_data["uye_kadi"];
+}
