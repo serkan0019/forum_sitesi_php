@@ -92,7 +92,7 @@ $data -> execute([
 ]);
 $_data = $data -> fetch(PDO::FETCH_ASSOC);
 
-return $_data["uye_adsoyad"];
+return @$_data["uye_adsoyad"];
 }
 
 function uye_ID_to_kadi($id)
@@ -106,5 +106,19 @@ $data -> execute([
 ]);
 $_data = $data -> fetch(PDO::FETCH_ASSOC);
 
-return $_data["uye_kadi"];
+return @$_data["uye_kadi"];
+}
+
+function kategori_linkten_kategori_adi($link)
+{
+    global $db;
+$data = $db -> prepare("SELECT * FROM kategoriler WHERE
+  k_kategori_link=?
+");
+$data -> execute([
+  $link
+]);
+$_data = $data -> fetch(PDO::FETCH_ASSOC);
+
+return @$_data["k_kategori"];
 }
