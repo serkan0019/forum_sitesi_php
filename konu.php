@@ -41,4 +41,17 @@ $data = $db -> prepare("SELECT * FROM konular WHERE
     <small><?=$_data["konu_tarih"]?></small>
 </p>
 
+<?php
+if (@$_SESSION["uye_id"]) {
+  echo '<h4>Konuya Yorum Yap: </h4>
+  <form action="" method="post">
+  <textarea name="yorum" cols="30" rows="15"> </textarea>
+  <br>
+  <br>
+  <input type="submit" value="Yorumu Yayınla">
+  </form>';
+} else {
+  echo 'Konuya yorum yapabilmek için lütfen <a href="uyelik.php"> GİRİŞ YAPIN</a> veya <a href="uyelik.php?p=kayit">KAYIT OLUN </a>';
+}
+?>
 </center>
