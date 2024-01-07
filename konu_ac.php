@@ -9,6 +9,8 @@ if(!@$_SESSION["uye_id"])
     echo '<center><h1>Konu paylaşmanız için üye olmanız gereklidir! <a href = "uyelik.php">Üye Ol</a></center><h1>';
     exit;
 }
+
+$kategori = $_GET["kategori"];
 ?>
 
 <center>
@@ -27,13 +29,15 @@ if ($_POST) {
                 konu_ad=?,
                 konu_link=?,
                 konu_mesaj=?,
-                konu_uye_id=?
+                konu_uye_id=?,
+                konu_kategori_link=?
     ");
     $dataAdd -> execute([
         $ad,
         $link,
         $mesaj,
-        @$_SESSION["uye_id"]
+        @$_SESSION["uye_id"],
+        $kategori
     ]);
 
     if ( $dataAdd ) {
@@ -47,7 +51,7 @@ if ($_POST) {
     }
 }
 ?>
-
+<strong><?=kategori_linkten_kategori_adi($kategori)?> Kategorisinde Konu açmaktasınız.</strong>
 <h2> Konu Paylaşma </h2>
 
 <form action = " " method = "post">
