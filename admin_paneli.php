@@ -4,7 +4,7 @@ include 'ayar.php';
 include 'ukas.php';
 include 'fonksiyon.php';
 
-if (!@$_SESSION['uye_onay'] == 1 )
+if (@$_SESSION['uye_onay'] !== 1 )
 {
     echo '<center><h1>Yönetici değilsiniz! Panele erişemezsiniz!</h1><center>';
     exit;
