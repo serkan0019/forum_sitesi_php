@@ -72,7 +72,7 @@ include 'fonksiyon.php';
 			$dataList -> execute();
 			$dataList = $dataList -> fetchALL(PDO::FETCH_ASSOC);
 			foreach($dataList as $row){
-				echo '<li><a href="kategori.php?link='.$row["k_kategori_link"].'">'.$row["k_kategori"].'</a></li>';
+				echo '<li><a href="kategori.php?q='.$row["k_kategori_link"].'">'.$row["k_kategori"].'</a></li>';
 			}
 			?>
 			</ul>
