@@ -41,11 +41,11 @@ if ($_POST) {
     ]);
 
     if ( $dataAdd ) {
-        echo '<p class="alert alert-success">Başarıyla konunuz paylaşıldı. :)</p>';
+        echo '<p class="alert alert-success">Başarıyla konunuz paylaşıldı.</p>';
         
         header("REFRESH:1;URL=konu.php?link=" . $link);
     } else {
-        echo '<p class="alert alert-danger">Hay aksi bir hata ile karşılaştık, lütfen tekrar deneyiniz. :/</p>';
+        echo '<p class="alert alert-danger">Sorun oldu, yeniden deneyiniz. :/</p>';
         
         header("REFRESH:1;URL=konuac.php");
     }
